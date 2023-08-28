@@ -2,21 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
-@layer utilities{
-  .custom-mx-global{
-    @apply mx-[10%]
+@layer utilities {
+  .custom-mx-global {
+    @apply mx-[10%];
   }
   .custom-py-section {
-    @apply pt-14 pb-6
+    @apply pb-6 pt-14;
   }
-  .custom-pt-iframe{
-    @apply pt-[45%]
+  .custom-pt-iframe {
+    @apply pt-[45%];
   }
-  }
- 
-    
-  
+}
