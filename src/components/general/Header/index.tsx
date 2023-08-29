@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-export default function Header({ handleClick }) {
+export default function Header() {
   return (
     <header className="flex items-center justify-between bg-zinc-100 px-[10%]">
       <a href="/">
@@ -24,10 +24,9 @@ export default function Header({ handleClick }) {
         <button className="block sm:hidden">
           <Image
             src="/icons/bars.svg"
-            alt="Menu"
+            alt="Menu Mobile"
             width={30}
-            height={32}
-            onClick={handleClick}
+            height={30}
           />
         </button>
       </div>
