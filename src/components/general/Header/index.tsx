@@ -15,13 +15,11 @@ export default function Header({ handleClick }) {
         />
       </a>
       <div className="flex gap-2">
-        <button className="flex items-center justify-between rounded-full bg-blue-500 px-5 py-3 uppercase text-white hover:bg-blue-700 sm:rounded-md">
-          <Image src="/icons/donate.svg" alt="xxx" width={30} height={30} />
-          <span className="hidden sm:block">Fazer Doação</span>
+        <button className="hidden items-center justify-between rounded-full bg-blue-500 px-5 py-3 uppercase text-white hover:bg-blue-700 sm:flex sm:rounded-md">
+          Fazer Doação
         </button>
-        <button className="btn-header flex rounded-full bg-green-500 px-5 py-3 uppercase text-white hover:bg-green-600 sm:rounded-md">
-          <Image src="/icons/donate.svg" alt="xxx" width={30} height={30} />
-          <span className="hidden sm:block">Faça parte</span>
+        <button className="hidden rounded-full bg-green-500 px-5 py-3 uppercase text-white hover:bg-green-600 sm:flex sm:rounded-md">
+          Faça parte
         </button>
         <button className="block sm:hidden">
           <Image

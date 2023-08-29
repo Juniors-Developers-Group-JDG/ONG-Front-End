@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,13 +29,9 @@ const data = [
   },
 ];
 
-function handleClick() {
-  console.log("teste");
-}
-
 export default function Navbar() {
   return (
-    <nav className="custom-mx-global hidden pb-6 text-base font-bold ">
+    <nav className="custom-mx-global pb-6 text-base font-bold ">
       <ul className="block justify-between border-b-2 border-green-500 py-6 sm:flex">
         {data.map((item) => (
           <li key={item.href}>
