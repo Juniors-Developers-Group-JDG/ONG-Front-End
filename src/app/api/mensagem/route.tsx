@@ -18,17 +18,23 @@ const htmlEmailTemplate = (
 export async function POST(request: NextRequest) {
   const { name, title, email, message, token } = await request.json()
 
-  if (!name || !title || !email || !message || !token) {
+  if (!name || !title || !email || !message) {
     return NextResponse.json(
-      { erro: 'O conteúdo do body não foi passado de forma apropriada' },
+      { erro: 'Faltam dados obrigatórios para a submissão.' },
       { status: 400 },
     )
   }
 
+  if (!token)
+    return NextResponse.json(
+      { erro: 'O ReCAPTCHA não foi devidamente marcado.' },
+      { status: 400 },
+    )
+
   const emailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
   if (!emailPattern.test(email)) {
     return NextResponse.json(
-      { erro: 'O e-mail inserido não é válido' },
+      { erro: 'O e-mail inserido não é válido.' },
       { status: 400 },
     )
   }
@@ -41,12 +47,15 @@ export async function POST(request: NextRequest) {
     const data = await result.json()
     if (!data.success) {
       return NextResponse.json(
-        { erro: 'A submissão deve ser realizada por um ser humano' },
+        { erro: 'O envio deve ser realizado por humanos.' },
         { status: 400 },
       )
     }
   } catch (error) {
-    return NextResponse.json(error, { status: 500 })
+    return NextResponse.json(
+      { erro: 'Não foi possível validar se você é humano.' },
+      { status: 500 },
+    )
   }
 
   const transporter = nodemailer.createTransport({
@@ -69,6 +78,9 @@ export async function POST(request: NextRequest) {
     })
     return NextResponse.json({ name, title, email, message }, { status: 201 })
   } catch (error) {
-    return NextResponse.json(error, { status: 500 })
+    return NextResponse.json(
+      { erro: 'A mensagem não pôde ser enviada.' },
+      { status: 500 },
+    )
   }
 }

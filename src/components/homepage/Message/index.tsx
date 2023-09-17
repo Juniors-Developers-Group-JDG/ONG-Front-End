@@ -74,23 +74,24 @@ export default function Message() {
           body: JSON.stringify({ ...state, token: captchaToken }),
         },
       )
+      const data = await result.json()
       if (result.status === 201) {
         setState(cleanState)
         setToast({
-          message: 'E-mail enviado com sucesso',
+          message: 'Sua mensagem foi enviada com sucesso.',
           status: true,
           visible: true,
         })
       } else {
         setToast({
-          message: 'Falha ao enviar e-mail',
+          message: data.erro,
           status: false,
           visible: true,
         })
       }
     } catch (error) {
       setToast({
-        message: 'Falha ao enviar e-mail',
+        message: 'Houve uma falha ao enviar a mensagem.',
         status: false,
         visible: true,
       })
@@ -135,7 +136,7 @@ export default function Message() {
             className="rounded-sm bg-slate-200 p-2"
             value={state.email}
             onChange={handleChange}
-            // type="email"
+            type="email"
             name="email"
             id="email"
             required
